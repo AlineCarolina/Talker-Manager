@@ -2,6 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const getAllTalkers = require('./middleware/getAllTalkers');
 const getTalkerById = require('./middleware/getTalkerById');
+const {
+  login, 
+  loginPassword,
+  token,
+} = require('./middleware/login');
 
 const app = express();
 app.use(bodyParser.json());
@@ -19,6 +24,9 @@ app.get('/talker', getAllTalkers);
 
 // Requisito 02
 app.get('/talker/:id', getTalkerById);
+
+// Requisito 03
+app.post('/login', login, loginPassword, token);
 
 app.listen(PORT, () => {
   console.log('Online');
