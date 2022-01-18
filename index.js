@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const getAllTalkers = require('./middleware/requisito1');
+const getAllTalkers = require('./middleware/getAllTalkers');
+const getTalkerById = require('./middleware/getTalkerById');
 
 const app = express();
 app.use(bodyParser.json());
@@ -15,6 +16,9 @@ app.get('/', (_request, response) => {
 
 // Requisito 01
 app.get('/talker', getAllTalkers);
+
+// Requisito 02
+app.get('/talker/:id', getTalkerById);
 
 app.listen(PORT, () => {
   console.log('Online');
