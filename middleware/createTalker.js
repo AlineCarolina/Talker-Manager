@@ -50,13 +50,12 @@ const createTalk = (req, res, next) => {
 };
 
 const addTalk = async (req, res) => {
-    const talker = req.body;
-    const data = await fs.readFile('talker.json', 'utf-8');
-    const newTalk = await JSON.parse(data);
-    talker.id = newTalk.length + 1;
-    newTalk.push(talker);
-    await fs.writeFile('talker.json', JSON.stringify(newTalk));
-    return res.status(201).json(talker);
+    const data = await fs.readFile('talker.json', 'utf-8')
+        .then((response) => JSON.parse(response));
+    const addTalker = { id: data.length + 1, ...req.body };
+    data.push(addTalker);
+    await fs.writeFile('talker.json', JSON.stringify(data));
+    return res.status(201).send(addTalker);
 };
 
 module.exports = {
