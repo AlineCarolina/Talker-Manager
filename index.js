@@ -7,6 +7,14 @@ const {
   loginPassword,
   token,
 } = require('./middleware/login');
+const {
+  validateToken,
+  createTalker,
+  createAge,
+  validateTalk,
+  createTalk,
+  addTalk,
+} = require('./middleware/createTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -27,6 +35,15 @@ app.get('/talker/:id', getTalkerById);
 
 // Requisito 03
 app.post('/login', login, loginPassword, token);
+
+// Requisito 04
+app.post('/talker',
+  validateToken,
+  createTalker,
+  createAge,
+  validateTalk,
+  createTalk,
+  addTalk);
 
 app.listen(PORT, () => {
   console.log('Online');
