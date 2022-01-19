@@ -40,7 +40,7 @@ const createTalk = (req, res, next) => {
     const validDate = reg.test(watchedAt);
     if (!validDate) {
         return res.status(400).json({
-            message: 'O campo "watchedAt" deve ter o formato "dd/mm/aaaa' });
+            message: 'O campo "watchedAt" deve ter o formato "dd/mm/aaaa"' });
     }
     if (rate < 1 || rate > 5) {
         return res.status(400).json({
