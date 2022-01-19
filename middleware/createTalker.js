@@ -53,7 +53,6 @@ const addTalk = async (req, res) => {
     const talker = req.body;
     const data = await fs.readFile('talker.json', 'utf-8');
     const newTalk = await JSON.parse(data);
-    console.log(newTalk.length);
     talker.id = newTalk.length + 1;
     newTalk.push(talker);
     await fs.writeFile('talker.json', JSON.stringify(newTalk));
