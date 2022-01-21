@@ -35,14 +35,14 @@ const validateTalk = (req, res, next) => {
 };
 
 const createTalk = (req, res, next) => {
-    const { talk: { watchedAt, rate } } = req.body;
+    const { talk } = req.body;
     const reg = /(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d/; /* https://stackoverflow.com/questions/10194464/javascript-dd-mm-yyyy-date-check */
-    const validDate = reg.test(watchedAt);
+    const validDate = reg.test(talk.watchedAt);
     if (!validDate) {
         return res.status(400).json({
             message: 'O campo "watchedAt" deve ter o formato "dd/mm/aaaa"' });
     }
-    if (rate < 1 || rate > 5) {
+    if (talk.rate < 1 || talk.rate > 5) {
         return res.status(400).json({
             message: 'O campo "rate" deve ser um inteiro de 1 à 5' });
     }

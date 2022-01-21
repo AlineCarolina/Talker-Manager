@@ -15,6 +15,7 @@ const {
   createTalk,
   addTalk,
 } = require('./middleware/createTalker');
+const { editTalker } = require('./middleware/editTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -44,6 +45,15 @@ app.post('/talker',
   validateTalk,
   createTalk,
   addTalk);
+
+// Requisito 05
+app.put('/talker/:id',
+  validateToken,
+  createTalker,
+  createAge,
+  validateTalk,
+  createTalk,
+  editTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
