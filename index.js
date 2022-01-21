@@ -16,6 +16,7 @@ const {
   addTalk,
 } = require('./middleware/createTalker');
 const { editTalker } = require('./middleware/editTalker');
+const { deleteTalker } = require('./middleware/deleteTalker');
 
 const app = express();
 app.use(bodyParser.json());
@@ -54,6 +55,11 @@ app.put('/talker/:id',
   validateTalk,
   createTalk,
   editTalker);
+
+// Requisito 06
+app.delete('/talker/:id',
+  validateToken,
+  deleteTalker);
 
 app.listen(PORT, () => {
   console.log('Online');
